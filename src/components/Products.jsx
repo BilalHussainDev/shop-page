@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { ProductCard } from "src/components";
 
 const products = [
@@ -587,17 +587,41 @@ const styles = {
 		gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
 		gap: "16px",
 		justifyContent: "center",
-		mb: "60px",
+		mb: "40px",
+	},
+	paginationBox: {
+		display: "flex",
+		justifyContent: "right",
+		mb: "40px",
+	},
+
+	pagination: {
+		color: "#fff",
+
+		".MuiPaginationItem-root": {
+			color: "#d5d5d5",
+		},
 	},
 };
 
 function Products() {
 	return (
-		<Box sx={styles.grid}>
-			{products.map((product) => (
-				<ProductCard key={product.id} product={product} />
-			))}
-		</Box>
+		<>
+			<Box sx={styles.grid}>
+				{products.map((product) => (
+					<ProductCard key={product.id} product={product} />
+				))}
+			</Box>
+			<Box sx={styles.paginationBox}>
+				<Pagination
+					count={5}
+					disabled={false}
+					size="large"
+					color="secondary"
+					sx={styles.pagination}
+				/>
+			</Box>
+		</>
 	);
 }
 
