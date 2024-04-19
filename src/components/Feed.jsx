@@ -13,6 +13,7 @@ const styles = {
 		pr: { xs: 0, md: 2 },
 		pt: { xs: 0, md: 2 },
 		position: "relative",
+		mb: { xs: 2, md: 0 },
 	},
 
 	copyright: {
@@ -28,6 +29,7 @@ const styles = {
 	products: {
 		overflowY: "auto",
 		flex: 2,
+		padding: { xs: "8px 0", md: "16px 12px 16px 24px" },
 	},
 };
 

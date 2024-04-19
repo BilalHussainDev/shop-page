@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Rating, Stack, Typography } from "@mui/material";
 
 const products = [
 	{
@@ -584,22 +584,31 @@ const styles = {
 	grid: {
 		display: "grid",
 		gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-		gap: "20px",
+		gap: "16px",
 		justifyContent: "center",
 		mb: "60px",
 	},
 
 	card: {
-		padding: "10px 13px",
 		borderRadius: "8px",
-		backgroundColor: "#f6f7fa",
+		backgroundColor: "#1e1e1e",
 		gap: "7px",
+		overflow: "hidden",
 	},
 
 	cardImage: {
 		display: "flex",
-		borderRadius: "4px",
 		overflow: "hidden",
+	},
+
+	cardContent: {
+		color: "#b5b5b5",
+		padding: "16px 16px 20px 16px",
+	},
+
+	flexbox: {
+		display: "flex",
+		justifyContent: "space-between",
 	},
 };
 
@@ -611,22 +620,32 @@ function Products() {
 					<Box sx={styles.cardImage}>
 						<img
 							width="100%"
-							height="141px"
+							height="140px"
 							src={product.thumbnail}
 							alt={product.title}
 							style={{ objectFit: "cover" }}
 						/>
 					</Box>
 
-					<Box>
-						<Typography variant="h6" mb="2px">
+					<Box sx={styles.cardContent}>
+						<Box sx={styles.flexbox}>
+							<Rating
+								name="half-rating-read"
+								defaultValue={product.rating}
+								precision={0.5}
+								size="small"
+								readOnly
+							/>
+							<Typography
+								variant="caption"
+								component="p"
+								mb="11px"
+							>
+								{product.price} $
+							</Typography>
+						</Box>
+						<Typography variant="subtitle2" mb="2px">
 							{product.title}
-						</Typography>
-						<Typography variant="caption" component="p" mb="11px">
-							{product.price} $
-						</Typography>
-						<Typography variant="caption" component="p">
-							{product.description}
 						</Typography>
 					</Box>
 				</Stack>
