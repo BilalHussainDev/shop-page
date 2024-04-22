@@ -15,13 +15,23 @@ const styles = {
 	},
 };
 
-function Pagination({ isPending, error, data, search }) {
-	if (isPending || error || search !== "") return "";
+function Pagination({
+	isPending,
+	error,
+	isHidden,
+	page,
+	setPage,
+	limit,
+	totalProducts,
+}) {
+	if (isPending || error || isHidden) return "";
 
 	return (
 		<Box sx={styles.paginationBox}>
 			<MuiPagination
-				count={Math.ceil(data.total / data.limit)}
+				count={Math.ceil(totalProducts / limit)}
+				page={page}
+				onChange={(_, value) => setPage(value)}
 				disabled={false}
 				size="large"
 				color="secondary"

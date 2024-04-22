@@ -7,6 +7,9 @@ import { ProductService } from "src/services";
 function ProductsPage() {
 	const [selectedCategory, setSelectedCategory] = useState("all");
 	const [search, setSearch] = useState("");
+	const [page, setPage] = useState(1);
+	const limit = 12;
+	const skip = limit * (page - 1);
 
 	// Request for All Products
 	// Run only at initial render
@@ -15,8 +18,8 @@ function ProductsPage() {
 		error: errorProducts,
 		data: allProducts,
 	} = useQuery({
-		queryKey: ["allProducts"],
-		queryFn: () => ProductService.getProducts(),
+		queryKey: ["allProducts", { page }],
+		queryFn: () => ProductService.getProducts(skip, limit),
 		staleTime: Infinity,
 	});
 
@@ -72,13 +75,16 @@ function ProductsPage() {
 				setSelectedCategory={setSelectedCategory}
 			/>
 			<Feed
-				selectedCategory={selectedCategory}
-				setSelectedCategory={setSelectedCategory}
 				isPending={isPending}
 				error={error}
 				data={productsData}
 				search={search}
 				setSearch={setSearch}
+				selectedCategory={selectedCategory}
+				setSelectedCategory={setSelectedCategory}
+				page={page}
+				setPage={setPage}
+				limit={limit}
 			/>
 		</Container>
 	);

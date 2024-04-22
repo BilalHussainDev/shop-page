@@ -31,6 +31,9 @@ function Feed({
 	setSearch,
 	selectedCategory,
 	setSelectedCategory,
+	page,
+	setPage,
+	limit,
 }) {
 	return (
 		// It contains two parts, sidebar and products
@@ -51,8 +54,11 @@ function Feed({
 				<Pagination
 					isPending={isPending}
 					error={error}
-					data={data}
-					search={search}
+					page={page}
+					setPage={setPage}
+					limit={limit}
+					totalProducts={data?.total}
+					isHidden={search !== "" || selectedCategory !== "all"}
 				/>
 			</Box>
 		</Stack>
