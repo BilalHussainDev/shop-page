@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { Sidebar, Products } from "src/components";
 
 const styles = {
@@ -16,16 +16,6 @@ const styles = {
 		mb: { xs: 2, md: 0 },
 	},
 
-	copyright: {
-		color: "#fff",
-		backgroundColor: "rgba(0, 0, 0)",
-		mt: 1.5,
-		p: "8px 0 8px 16px",
-		position: "sticky",
-		bottom: "0",
-		display: { xs: "none", md: "block" },
-	},
-
 	products: {
 		overflowY: "auto",
 		flex: 2,
@@ -33,22 +23,27 @@ const styles = {
 	},
 };
 
-function Feed() {
+function Feed({
+	selectedCategory,
+	setSelectedCategory,
+	isPending,
+	error,
+	data,
+}) {
 	return (
 		// It contains two parts, sidebar and products
 		<Stack component="section" sx={styles.feeds}>
 			{/* Box for sidebar */}
 			<Box sx={styles.sidebar}>
-				<Sidebar />
-
-				<Typography variant="body2" sx={styles.copyright}>
-					CopyRight © {new Date().getFullYear()}
-				</Typography>
+				<Sidebar
+					selectedCategory={selectedCategory}
+					setSelectedCategory={setSelectedCategory}
+				/>
 			</Box>
 
 			{/* Box for products */}
 			<Box p={2} sx={styles.products}>
-				<Products />
+				<Products isPending={isPending} error={error} data={data} />
 			</Box>
 		</Stack>
 	);

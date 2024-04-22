@@ -1,39 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
 import { Stack } from "@mui/material";
-import { useState } from "react";
-
-const categories = [
-	"smartphones",
-	"laptops",
-	"fragrances",
-	"skincare",
-	"groceries",
-	"home-decoration",
-	"furniture",
-	"tops",
-	"womens-dresses",
-	"womens-shoes",
-	"mens-shirts",
-	"mens-shoes",
-	"mens-watches",
-	"womens-watches",
-	"womens-bags",
-	"womens-jewellery",
-	"sunglasses",
-	"automotive",
-	"motorcycle",
-	"lighting",
-];
+import { ProductService } from "src/services";
 
 const styles = {
 	sidebar: {
+		minWidth: { xs: "100%", md: "152px" },
 		overflowY: "auto",
 		flexDirection: { xs: "row", md: "column" },
 		mb: { xs: 0, md: 2 },
 	},
 };
 
-function Sidebar() {
-	const [selectedCategory, setSelectedCategory] = useState("all");
+function Sidebar({ selectedCategory, setSelectedCategory }) {
+	// Fetch titles of all Categories
+	// Run only once
+	const { isPending, error, data } = useQuery({
+		queryKey: ["categories"],
+		queryFn: () => ProductService.getCategories(),
+		staleTime: Infinity,
+	});
 
 	return (
 		<Stack sx={styles.sidebar}>
@@ -47,18 +32,21 @@ function Sidebar() {
 			>
 				All
 			</button>
-			{categories.map((category) => (
-				<button
-					key={category}
-					onClick={() => setSelectedCategory(category)}
-					className="category-btn"
-					style={{
-						background: category === selectedCategory && "#9c23d5",
-					}}
-				>
-					{category.split("-").join(" ")}
-				</button>
-			))}
+			{isPending || error
+				? ""
+				: data.map((category) => (
+						<button
+							key={category}
+							onClick={() => setSelectedCategory(category)}
+							className="category-btn"
+							style={{
+								background:
+									category === selectedCategory && "#9c23d5",
+							}}
+						>
+							{category.split("-").join(" ")}
+						</button>
+				  ))}
 		</Stack>
 	);
 }

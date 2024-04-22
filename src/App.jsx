@@ -1,11 +1,12 @@
-import { Container } from "@mui/material";
-import { Feed, Navbar } from "src/components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ProductsPage } from "src/Pages";
+
+const queryClient = new QueryClient();
 
 const App = () => (
-	<Container maxWidth="xl">
-		<Navbar />
-		<Feed />
-	</Container>
+	<QueryClientProvider client={queryClient}>
+		<ProductsPage />
+	</QueryClientProvider>
 );
 
 export default App;
