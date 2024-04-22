@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import { Sidebar, Products } from "src/components";
+import { Sidebar, Products, Pagination } from "src/components";
 
 const styles = {
 	feeds: {
@@ -24,11 +24,13 @@ const styles = {
 };
 
 function Feed({
-	selectedCategory,
-	setSelectedCategory,
 	isPending,
 	error,
 	data,
+	search,
+	setSearch,
+	selectedCategory,
+	setSelectedCategory,
 }) {
 	return (
 		// It contains two parts, sidebar and products
@@ -38,12 +40,20 @@ function Feed({
 				<Sidebar
 					selectedCategory={selectedCategory}
 					setSelectedCategory={setSelectedCategory}
+					setSearch={setSearch}
 				/>
 			</Box>
 
 			{/* Box for products */}
 			<Box p={2} sx={styles.products}>
 				<Products isPending={isPending} error={error} data={data} />
+
+				<Pagination
+					isPending={isPending}
+					error={error}
+					data={data}
+					search={search}
+				/>
 			</Box>
 		</Stack>
 	);

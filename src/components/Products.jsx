@@ -1,4 +1,4 @@
-import { Box, Pagination } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { ProductCard } from "src/components";
 
 const styles = {
@@ -8,19 +8,6 @@ const styles = {
 		gap: "16px",
 		justifyContent: "center",
 		mb: "40px",
-	},
-	paginationBox: {
-		display: "flex",
-		justifyContent: "right",
-		mb: "40px",
-	},
-
-	pagination: {
-		color: "#fff",
-
-		".MuiPaginationItem-root": {
-			color: "#d5d5d5",
-		},
 	},
 
 	message: {
@@ -35,29 +22,22 @@ function Products({ isPending, error, data }) {
 
 	if (error) {
 		return (
-			<Box sx={styles.message}>
+			<Typography sx={styles.message}>
 				An error has occurred: {error.message}
-			</Box>
+			</Typography>
 		);
 	}
 
+	if (data.products.length <= 0) {
+		return <Typography sx={styles.message}>No Results. 😔</Typography>;
+	}
+
 	return (
-		<>
-			<Box sx={styles.grid}>
-				{data.products.map((product) => (
-					<ProductCard key={product.id} product={product} />
-				))}
-			</Box>
-			<Box sx={styles.paginationBox}>
-				<Pagination
-					count={Math.ceil(data.total / data.limit)}
-					disabled={false}
-					size="large"
-					color="secondary"
-					sx={styles.pagination}
-				/>
-			</Box>
-		</>
+		<Box sx={styles.grid}>
+			{data.products.map((product) => (
+				<ProductCard key={product.id} product={product} />
+			))}
+		</Box>
 	);
 }
 

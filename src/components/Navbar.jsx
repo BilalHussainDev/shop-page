@@ -41,7 +41,7 @@ const styles = {
 	},
 };
 
-function Navbar({ searchQuery, setSearchQuery }) {
+function Navbar({ search, setSearch, setSelectedCategory }) {
 	return (
 		<Stack component="nav" direction="row" sx={styles.navbar}>
 			<Box sx={styles.logoBox}>
@@ -53,15 +53,12 @@ function Navbar({ searchQuery, setSearchQuery }) {
 					component="input"
 					sx={styles.searchInput}
 					placeholder="search"
-					value={searchQuery}
-					onChange={(e) => setSearchQuery(e.target.value)}
-					onBlur={() => setSearchQuery("")}
+					value={search}
+					onChange={(e) => setSearch(e.target.value)}
+					onKeyDown={() => setSelectedCategory("all")}
 				/>
 
-				<IconButton
-					sx={styles.cross}
-					onClick={() => setSearchQuery("")}
-				>
+				<IconButton sx={styles.cross} onClick={() => setSearch("")}>
 					x
 				</IconButton>
 			</Paper>

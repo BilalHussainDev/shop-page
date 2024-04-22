@@ -10,12 +10,6 @@ const getProducts = async (skip = 0, limit = 10) => {
 	return response.data;
 };
 
-const getSearchedProducts = async (query) => {
-	console.log("Getting Products for query " + query);
-	const response = await API.get(`/products/search?q=${query}`);
-	return response.data;
-};
-
 const getCategories = async () => {
 	console.log("Getting Categories");
 	const response = await API.get(`/products/categories`);
@@ -28,11 +22,17 @@ const getProductsByCategory = async (category) => {
 	return response.data;
 };
 
+const getProductsBySearch = async (search) => {
+	console.log("Getting Products for query " + search);
+	const response = await API.get(`/products/search?q=${search}`);
+	return response.data;
+};
+
 const ProductService = {
 	getProducts,
-	getSearchedProducts,
 	getCategories,
 	getProductsByCategory,
+	getProductsBySearch,
 };
 
 export default ProductService;
