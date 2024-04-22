@@ -4,7 +4,7 @@ const API = axios.create({
 	baseURL: import.meta.env.VITE_HOST_API,
 });
 
-const getProducts = async (skip = 0, limit = 10) => {
+const getProducts = async (skip = 0, limit = 12) => {
 	console.log("Getting Products");
 	const response = await API.get(`/products?skip=${skip}&limit=${limit}`);
 	return response.data;

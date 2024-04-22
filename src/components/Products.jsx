@@ -4,7 +4,10 @@ import { ProductCard } from "src/components";
 const styles = {
 	grid: {
 		display: "grid",
-		gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+		gridTemplateColumns: {
+			xs: "repeat(auto-fit, minmax(240px, 1fr))",
+			lg: "repeat(4, 1fr)",
+		},
 		gap: "16px",
 		justifyContent: "center",
 		mb: "40px",
