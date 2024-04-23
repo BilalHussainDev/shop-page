@@ -4,3 +4,4 @@ export { default as Pagination } from "./Pagination";
 export { default as ProductCard } from "./ProductCard";
 export { default as Products } from "./Products";
 export { default as Sidebar } from "./Sidebar";
+export { default as SkeletonCard } from "./SkeletonCard";

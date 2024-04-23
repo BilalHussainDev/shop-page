@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { ProductCard } from "src/components";
+import { ProductCard, SkeletonCard } from "src/components";
 
 const styles = {
 	grid: {
@@ -20,7 +20,13 @@ const styles = {
 
 function Products({ isPending, error, data }) {
 	if (isPending) {
-		return <Box sx={styles.message}>Loading...</Box>;
+		return (
+			<Box sx={styles.grid}>
+				{Array.from(new Array(4)).map((_, index) => (
+					<SkeletonCard key={index} />
+				))}
+			</Box>
+		);
 	}
 
 	if (error) {
