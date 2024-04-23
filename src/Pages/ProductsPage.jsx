@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Container } from "@mui/material";
 import { Feed, Navbar } from "src/components";
@@ -11,20 +11,12 @@ function ProductsPage() {
 	const limit = 12;
 	const skip = limit * (page - 1);
 
-	// Request for All Products
-	// Run when page number change
-	const {
-		isPending: isPendingProducts,
-		error: errorProducts,
-		data: allProducts,
-	} = useQuery({
-		queryKey: ["allProducts", { page }],
-		queryFn: () => ProductService.getProducts(skip, limit),
-		staleTime: Infinity,
-	});
+	// Reset the page when categories or search will change
+	useEffect(() => {
+		setPage(1);
+	}, [selectedCategory, search]);
 
 	// Request for Products According to Category
-	// Run when Selected Category will change
 	const {
 		isPending: isPendingProductsByCategory,
 		error: errorProductsByCategory,
@@ -36,36 +28,27 @@ function ProductsPage() {
 	});
 
 	// Request for Products According to Search
-	// Run when Seach Term will change
 	const {
 		isPending: isPendingProductsBySearch,
 		error: errorProductsBySearch,
 		data: productsBySearch,
 	} = useQuery({
-		queryKey: ["productsBySearch", { search }],
-		queryFn: () => ProductService.getProductsBySearch(search),
+		queryKey: ["productsBySearch", { search, page }],
+		queryFn: () =>
+			ProductService.getProductsBySearch({ search, skip, limit }),
 		staleTime: Infinity,
 	});
 
 	// represent a request is pending
-	const isPending =
-		isPendingProducts ||
-		isPendingProductsByCategory ||
-		isPendingProductsBySearch;
+	const isPending = isPendingProductsByCategory || isPendingProductsBySearch;
 
 	// represent error if any
-	const error =
-		errorProducts || errorProductsByCategory || errorProductsBySearch;
+	const error = errorProductsByCategory || errorProductsBySearch;
 
 	// Final Products Data to display
-	// Depending on wether user selected a category
-	// or search products
+	// Depending on wether user selected a category or search products
 	const productsData =
-		selectedCategory !== "all"
-			? productsByCategory
-			: search !== ""
-			? productsBySearch
-			: allProducts;
+		selectedCategory !== "all" ? productsByCategory : productsBySearch;
 
 	return (
 		<Container maxWidth="xl">
@@ -79,7 +62,6 @@ function ProductsPage() {
 				isPending={isPending}
 				error={error}
 				data={productsData}
-				search={search}
 				setSearch={setSearch}
 				selectedCategory={selectedCategory}
 				setSelectedCategory={setSelectedCategory}

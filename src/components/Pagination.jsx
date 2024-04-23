@@ -15,16 +15,8 @@ const styles = {
 	},
 };
 
-function Pagination({
-	isPending,
-	error,
-	isHidden,
-	page,
-	setPage,
-	limit,
-	totalProducts,
-}) {
-	if (isPending || error || isHidden) return "";
+function Pagination({ isPending, error, page, setPage, limit, totalProducts }) {
+	if (isPending || error) return "";
 
 	return (
 		<Box sx={styles.paginationBox}>

@@ -27,7 +27,6 @@ function Feed({
 	isPending,
 	error,
 	data,
-	search,
 	setSearch,
 	selectedCategory,
 	setSelectedCategory,
@@ -58,7 +57,6 @@ function Feed({
 					setPage={setPage}
 					limit={limit}
 					totalProducts={data?.total}
-					isHidden={search !== "" || selectedCategory !== "all"}
 				/>
 			</Box>
 		</Stack>
