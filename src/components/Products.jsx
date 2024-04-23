@@ -19,6 +19,7 @@ const styles = {
 };
 
 function Products({ isPending, error, data }) {
+	// if request for products is pending
 	if (isPending) {
 		return (
 			<Box sx={styles.grid}>
@@ -29,6 +30,7 @@ function Products({ isPending, error, data }) {
 		);
 	}
 
+	// if request for products gives error
 	if (error) {
 		return (
 			<Typography sx={styles.message}>
@@ -37,10 +39,12 @@ function Products({ isPending, error, data }) {
 		);
 	}
 
+	// if request for products gives empty array
 	if (data.products.length <= 0) {
 		return <Typography sx={styles.message}>No Results. 😔</Typography>;
 	}
 
+	// if request for products gives Products Successfully
 	return (
 		<Box sx={styles.grid}>
 			{data.products.map((product) => (

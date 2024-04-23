@@ -11,7 +11,7 @@ function ProductsPage() {
 	const limit = 12;
 	const skip = limit * (page - 1);
 
-	// Reset the page when categories or search will change
+	// Reset the Page Number when categories or search changes
 	useEffect(() => {
 		setPage(1);
 	}, [selectedCategory, search]);

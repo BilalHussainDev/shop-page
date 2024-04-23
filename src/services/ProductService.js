@@ -17,7 +17,7 @@ const getProductsByCategory = async (category) => {
 	return response.data;
 };
 
-// Fetch Products with respect to Search
+// Fetch Products according to Search
 const getProductsBySearch = async ({ search, skip = 0, limit = 10 }) => {
 	const response = await API.get(
 		`/products/search?q=${search}&skip=${skip}&limit=${limit}`

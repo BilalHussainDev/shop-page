@@ -12,8 +12,7 @@ const styles = {
 };
 
 function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
-	// Fetch titles of all Categories
-	// Run only once
+	// Fetch titles of all Categories - Run only once
 	const { data: categories } = useQuery({
 		queryKey: ["categories"],
 		queryFn: () => ProductService.getCategories(),
@@ -22,6 +21,7 @@ function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
 
 	return (
 		<Stack sx={styles.sidebar} onClick={() => setSearch("")}>
+			{/* Button for Category: "All" */}
 			<button
 				onClick={() => setSelectedCategory("all")}
 				className="category-btn"
@@ -32,6 +32,8 @@ function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
 			>
 				All
 			</button>
+
+			{/* Buttons for Fetched Categories */}
 			{categories &&
 				categories.map((category) => (
 					<button

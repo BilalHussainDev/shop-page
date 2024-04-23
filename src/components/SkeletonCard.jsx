@@ -26,6 +26,7 @@ const styles = {
 function ProductCard() {
 	return (
 		<Stack sx={styles.card}>
+			{/* Rectangle to replace Image */}
 			<Skeleton
 				variant="rectangular"
 				width="100%"
@@ -35,10 +36,14 @@ function ProductCard() {
 
 			<Box sx={styles.cardContent}>
 				<Box sx={styles.flexbox}>
+					{/* Bar to replace Rating */}
 					<Skeleton width="45%" height="24px" sx={styles.skeleton} />
+
+					{/* Bar to replace Price */}
 					<Skeleton width="12%" height="22px" sx={styles.skeleton} />
 				</Box>
 
+				{/* Bar to replace Title */}
 				<Skeleton
 					width="70%"
 					height="22px"

@@ -16,6 +16,7 @@ const styles = {
 };
 
 function Pagination({ isPending, error, page, setPage, limit, totalProducts }) {
+	// No pagination if request for products is pending or give error
 	if (isPending || error) return "";
 
 	return (
