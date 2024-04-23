@@ -6,7 +6,6 @@ const styles = {
 		backgroundColor: "#1e1e1e",
 		gap: "7px",
 		overflow: "hidden",
-		// width: "240px",
 	},
 
 	cardImage: {
@@ -22,6 +21,12 @@ const styles = {
 	flexbox: {
 		display: "flex",
 		justifyContent: "space-between",
+	},
+
+	rating: {
+		"& .MuiSvgIcon-root": {
+			color: "#faaf00",
+		},
 	},
 };
 
@@ -46,6 +51,7 @@ function ProductCard({ product }) {
 						precision={0.5}
 						size="small"
 						readOnly
+						sx={styles.rating}
 					/>
 					<Typography variant="caption" component="p" mb="11px">
 						{product.price} $
