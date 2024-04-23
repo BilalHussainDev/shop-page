@@ -65,8 +65,6 @@ function ProductsPage() {
 			? productsBySearch
 			: allProducts;
 
-	console.log(productsData);
-
 	return (
 		<Container maxWidth="xl">
 			<Navbar
