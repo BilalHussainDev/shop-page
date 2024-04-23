@@ -12,7 +12,7 @@ function ProductsPage() {
 	const skip = limit * (page - 1);
 
 	// Request for All Products
-	// Run only at initial render
+	// Run when page number change
 	const {
 		isPending: isPendingProducts,
 		error: errorProducts,
@@ -58,6 +58,8 @@ function ProductsPage() {
 		errorProducts || errorProductsByCategory || errorProductsBySearch;
 
 	// Final Products Data to display
+	// Depending on wether user selected a category
+	// or search products
 	const productsData =
 		selectedCategory !== "all"
 			? productsByCategory
@@ -72,6 +74,7 @@ function ProductsPage() {
 				setSearch={setSearch}
 				setSelectedCategory={setSelectedCategory}
 			/>
+
 			<Feed
 				isPending={isPending}
 				error={error}

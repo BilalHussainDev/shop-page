@@ -4,8 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-
-  /* outline: 1px solid yellow; */
 }
 
 html {
@@ -63,11 +61,5 @@ a {
 @media screen and (max-width: 900px) {
   .category-btn {
     margin: 0 4px 12px 0;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .scroll-horizontal {
-    overflow: auto !important;
   }
 }
