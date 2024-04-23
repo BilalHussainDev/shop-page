@@ -23,7 +23,7 @@ function Products({ isPending, error, data }) {
 	if (isPending) {
 		return (
 			<Box sx={styles.grid}>
-				{Array.from(new Array(4)).map((_, index) => (
+				{Array.from(new Array(5)).map((_, index) => (
 					<SkeletonCard key={index} />
 				))}
 			</Box>

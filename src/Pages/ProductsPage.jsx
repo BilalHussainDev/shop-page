@@ -8,7 +8,7 @@ function ProductsPage() {
 	const [selectedCategory, setSelectedCategory] = useState("all");
 	const [search, setSearch] = useState("");
 	const [page, setPage] = useState(1);
-	const limit = 12;
+	const limit = 13;
 	const skip = limit * (page - 1);
 
 	// Reset the Page Number when categories or search changes
