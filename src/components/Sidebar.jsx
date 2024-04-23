@@ -14,7 +14,7 @@ const styles = {
 function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
 	// Fetch titles of all Categories
 	// Run only once
-	const { isPending, error, data } = useQuery({
+	const { data: categories } = useQuery({
 		queryKey: ["categories"],
 		queryFn: () => ProductService.getCategories(),
 		staleTime: Infinity,
@@ -32,21 +32,20 @@ function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
 			>
 				All
 			</button>
-			{isPending || error
-				? ""
-				: data.map((category) => (
-						<button
-							key={category}
-							onClick={() => setSelectedCategory(category)}
-							className="category-btn"
-							style={{
-								background:
-									category === selectedCategory && "#9c23d5",
-							}}
-						>
-							{category.split("-").join(" ")}
-						</button>
-				  ))}
+			{categories &&
+				categories.map((category) => (
+					<button
+						key={category}
+						onClick={() => setSelectedCategory(category)}
+						className="category-btn"
+						style={{
+							background:
+								category === selectedCategory && "#9c23d5",
+						}}
+					>
+						{category.split("-").join(" ")}
+					</button>
+				))}
 		</Stack>
 	);
 }

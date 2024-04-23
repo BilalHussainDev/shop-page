@@ -39,10 +39,7 @@ function ProductsPage() {
 		staleTime: Infinity,
 	});
 
-	// represent a request is pending
 	const isPending = isPendingProductsByCategory || isPendingProductsBySearch;
-
-	// represent error if any
 	const error = errorProductsByCategory || errorProductsBySearch;
 
 	// Final Products Data to display

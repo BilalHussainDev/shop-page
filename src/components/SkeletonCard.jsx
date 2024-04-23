@@ -8,13 +8,7 @@ const styles = {
 		overflow: "hidden",
 	},
 
-	cardImage: {
-		display: "flex",
-		overflow: "hidden",
-	},
-
 	cardContent: {
-		color: "#b5b5b5",
 		padding: "16px 16px 20px 16px",
 	},
 
@@ -23,38 +17,33 @@ const styles = {
 		justifyContent: "space-between",
 		mb: "8px",
 	},
+
+	skeleton: {
+		backgroundColor: "#343434",
+	},
 };
 
 function ProductCard() {
 	return (
 		<Stack sx={styles.card}>
-			<Box sx={styles.cardImage}>
-				<Skeleton
-					variant="rectangular"
-					width="100%"
-					height="140px"
-					sx={{ backgroundColor: "#343434" }}
-				/>
-			</Box>
+			<Skeleton
+				variant="rectangular"
+				width="100%"
+				height="140px"
+				sx={styles.skeleton}
+			/>
 
 			<Box sx={styles.cardContent}>
 				<Box sx={styles.flexbox}>
-					<Skeleton
-						width="45%"
-						height="24px"
-						sx={{ backgroundColor: "#343434" }}
-					/>
-					<Skeleton
-						width="12%"
-						height="22px"
-						sx={{ backgroundColor: "#343434" }}
-					/>
+					<Skeleton width="45%" height="24px" sx={styles.skeleton} />
+					<Skeleton width="12%" height="22px" sx={styles.skeleton} />
 				</Box>
+
 				<Skeleton
 					width="70%"
 					height="22px"
 					mb="2px"
-					sx={{ backgroundColor: "#343434" }}
+					sx={styles.skeleton}
 				/>
 			</Box>
 		</Stack>
