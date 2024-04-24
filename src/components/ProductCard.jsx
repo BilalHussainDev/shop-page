@@ -6,6 +6,7 @@ const styles = {
 		backgroundColor: "#1e1e1e",
 		gap: "7px",
 		overflow: "hidden",
+		height: "260px",
 	},
 
 	cardImage: {

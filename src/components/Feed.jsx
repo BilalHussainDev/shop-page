@@ -27,7 +27,6 @@ function Feed({
 	isPending,
 	error,
 	data,
-	setSearch,
 	selectedCategory,
 	setSelectedCategory,
 	page,
@@ -42,7 +41,6 @@ function Feed({
 				<Sidebar
 					selectedCategory={selectedCategory}
 					setSelectedCategory={setSelectedCategory}
-					setSearch={setSearch}
 				/>
 			</Box>
 

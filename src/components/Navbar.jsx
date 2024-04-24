@@ -1,6 +1,6 @@
 import { Box, Stack, IconButton, Paper } from "@mui/material";
 import logo from "/vite.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const styles = {
 	navbar: {
@@ -45,7 +45,7 @@ const styles = {
 	},
 };
 
-function Navbar({ setSearch }) {
+function Navbar({ setSearch, selectedCategory }) {
 	const [inputValue, setInputValue] = useState("");
 	const [typingTimeout, setTypingTimeout] = useState(null);
 
@@ -65,6 +65,14 @@ function Navbar({ setSearch }) {
 			}, 500)
 		);
 	};
+
+	// Reset Search when Selected Category changes
+	useEffect(() => {
+		if (selectedCategory !== "all") {
+			setSearch("");
+			setInputValue("");
+		}
+	}, [selectedCategory, setSearch]);
 
 	const clearSearchHandler = () => {
 		// clear local state value

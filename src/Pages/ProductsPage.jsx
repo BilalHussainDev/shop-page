@@ -11,7 +11,12 @@ function ProductsPage() {
 	const limit = 13;
 	const skip = limit * (page - 1);
 
-	// Reset the Page Number when categories or search changes
+	// Reset Selected Category when Search changes
+	useEffect(() => {
+		if (search !== "") setSelectedCategory("all");
+	}, [search]);
+
+	// Reset Page Number when categories or search changes
 	useEffect(() => {
 		setPage(1);
 	}, [selectedCategory, search]);
@@ -49,11 +54,7 @@ function ProductsPage() {
 
 	return (
 		<Container maxWidth="xl">
-			<Navbar
-				search={search}
-				setSearch={setSearch}
-				setSelectedCategory={setSelectedCategory}
-			/>
+			<Navbar setSearch={setSearch} selectedCategory={selectedCategory} />
 
 			<Feed
 				isPending={isPending}

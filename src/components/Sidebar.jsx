@@ -11,7 +11,7 @@ const styles = {
 	},
 };
 
-function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
+function Sidebar({ selectedCategory, setSelectedCategory }) {
 	// Fetch titles of all Categories - Run only once
 	const { data: categories } = useQuery({
 		queryKey: ["categories"],
@@ -20,7 +20,7 @@ function Sidebar({ selectedCategory, setSelectedCategory, setSearch }) {
 	});
 
 	return (
-		<Stack sx={styles.sidebar} onClick={() => setSearch("")}>
+		<Stack sx={styles.sidebar}>
 			{/* Button for Category: "All" */}
 			<button
 				onClick={() => setSelectedCategory("all")}
