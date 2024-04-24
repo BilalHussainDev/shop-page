@@ -1,5 +1,6 @@
 import { Box, Stack, IconButton, Paper } from "@mui/material";
 import logo from "/vite.svg";
+import { useState } from "react";
 
 const styles = {
 	navbar: {
@@ -44,7 +45,34 @@ const styles = {
 	},
 };
 
-function Navbar({ search, setSearch, setSelectedCategory }) {
+function Navbar({ setSearch }) {
+	const [inputValue, setInputValue] = useState("");
+	const [typingTimeout, setTypingTimeout] = useState(null);
+
+	// Input Change Handler
+	const handleInputChange = (event) => {
+		const value = event.target.value;
+		setInputValue(value);
+
+		// Clear any previous typing timeout
+		if (typingTimeout) clearTimeout(typingTimeout);
+
+		// Set a new typing timeout
+		setTypingTimeout(
+			setTimeout(() => {
+				// Change Global Search State after user stop typing
+				setSearch(() => value);
+			}, 500)
+		);
+	};
+
+	const clearSearchHandler = () => {
+		// clear local state value
+		setInputValue("");
+		// clear global search state
+		setSearch("");
+	};
+
 	return (
 		<Stack component="nav" direction="row" sx={styles.navbar}>
 			<Box sx={styles.logoBox}>
@@ -56,15 +84,14 @@ function Navbar({ search, setSearch, setSelectedCategory }) {
 					component="input"
 					sx={styles.searchInput}
 					placeholder="search"
-					value={search}
-					onChange={(e) => setSearch(e.target.value)}
-					onKeyDown={() => setSelectedCategory("all")}
+					value={inputValue}
+					onChange={handleInputChange}
 				/>
 
 				<IconButton
 					sx={styles.cross}
-					disabled={!search}
-					onClick={() => setSearch("")}
+					disabled={!inputValue}
+					onClick={clearSearchHandler}
 				>
 					x
 				</IconButton>
