@@ -32,6 +32,9 @@ const styles = {
 		height: "40px",
 		width: "40px",
 		margin: "2px",
+		"&.Mui-disabled": {
+			opacity: "0",
+		},
 	},
 
 	searchInput: {
@@ -58,7 +61,11 @@ function Navbar({ search, setSearch, setSelectedCategory }) {
 					onKeyDown={() => setSelectedCategory("all")}
 				/>
 
-				<IconButton sx={styles.cross} onClick={() => setSearch("")}>
+				<IconButton
+					sx={styles.cross}
+					disabled={!search}
+					onClick={() => setSearch("")}
+				>
 					x
 				</IconButton>
 			</Paper>
